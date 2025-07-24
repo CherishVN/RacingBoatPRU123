@@ -187,13 +187,11 @@ public class BoatFloating : MonoBehaviour
         
         float baseLevel = waterLevel;
         
-        // Nếu có Ocean, sử dụng Ocean position làm base level
         if (oceanTransform != null)
         {
             baseLevel = oceanTransform.position.y;
         }
         
-        // Tính toán sóng
         float wave1 = Mathf.Sin((position.x / waveLength + Time.time * waveSpeed) * 2 * Mathf.PI) * waveHeight;
         float wave2 = Mathf.Sin((position.z / waveLength + Time.time * waveSpeed * 0.8f) * 2 * Mathf.PI) * waveHeight * 0.5f;
         
@@ -202,7 +200,6 @@ public class BoatFloating : MonoBehaviour
     
     void OnDrawGizmos()
     {
-        // Chỉ vẽ các điểm nổi nhỏ, không vẽ mặt nước lớn
         if (floatingPoints != null)
         {
             Gizmos.color = Color.cyan;
@@ -215,9 +212,8 @@ public class BoatFloating : MonoBehaviour
             }
         }
         
-        // Vẽ đường mực nước nhỏ xung quanh thuyền thôi
         Gizmos.color = Color.blue;
-        Vector3 waterPlaneSize = new Vector3(5f, 0.02f, 5f); // Nhỏ hơn nhiều
+        Vector3 waterPlaneSize = new Vector3(5f, 0.02f, 5f);
         Gizmos.DrawWireCube(new Vector3(transform.position.x, waterLevel, transform.position.z), waterPlaneSize);
     }
 } 
