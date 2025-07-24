@@ -12,7 +12,11 @@ public class PaddlerController : MonoBehaviour
     [Header("Animation Parameters")]
     public string paddlingBool = "IsPaddling";
     public string speedParameter = "PaddlingSpeed";
-    
+
+    [Header("Audio Settings")]
+    public AudioClip[] rowingSounds;
+    private AudioSource audioSource;
+
     void Start()
     {
         if (animator == null)
@@ -23,6 +27,14 @@ public class PaddlerController : MonoBehaviour
             
         if (boatMovementArrows == null)
             boatMovementArrows = GetComponentInParent<BoatMovementArrows>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("Không tìm thấy AudioSource, đã tự động thêm một cái.");
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
     }
     
     void Update()
@@ -59,5 +71,16 @@ public class PaddlerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) input = -1f;
         
         return input;
+    }
+
+    public void PlayRowingSound()
+    {
+        if (rowingSounds.Length == 0 || audioSource == null) return;
+
+        AudioClip clipToPlay = rowingSounds[Random.Range(0, rowingSounds.Length)];
+
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+
+        audioSource.PlayOneShot(clipToPlay);
     }
 } 
