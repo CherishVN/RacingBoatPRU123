@@ -77,36 +77,34 @@ public class FirebaseRemoteConfigManager : MonoBehaviour
     }
 
     void ApplyRemoteConfig()
+{
+    try
     {
-        try
-        {
-            // Lấy giá trị game_mode từ Remote Config
-            ConfigValue gameModeValue = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode");
-            
-            string gameMode = gameModeValue.StringValue;
-           
+        string gameMode = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode").StringValue;
 
-            // Sử dụng gameMode để điều chỉnh chế độ chơi
-            if (gameMode == "vs_ai")
-            {
-                // Thiết lập chế độ chơi với AI
-                Debug.Log("Đang chuyển sang chế độ chơi với AI");
-            }
-            else if (gameMode == "vs_human")
-            {
-                // Thiết lập chế độ chơi với người
-                Debug.Log("Đang chuyển sang chế độ chơi với người");
-            }
-            else
-            {
-                // Sử dụng giá trị mặc định nếu không nhận diện được chế độ
-                Debug.Log("Sử dụng chế độ mặc định - vs_ai");
-            }
-            Debug.Log("Game Mode từ Remote Config: " + gameMode);
-        }
-        catch (Exception ex)
+        Debug.Log("Game Mode từ Remote Config: " + gameMode);
+
+        if (gameMode == "vs_ai")
         {
-            Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
+            Debug.Log("Đang chuyển sang chế độ chơi với AI");
+
+            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsAI);
+        }
+        else if (gameMode == "vs_human")
+        {
+            Debug.Log("Đang chuyển sang chế độ chơi với người");
+
+            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsHuman);
+        }
+        else
+        {
+            Debug.Log("Giá trị không xác định, fallback về vs_human");
+            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsHuman);
         }
     }
+    catch (Exception ex)
+    {
+        Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
+    }
+}
 }
