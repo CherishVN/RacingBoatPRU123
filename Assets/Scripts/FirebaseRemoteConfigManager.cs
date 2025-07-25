@@ -7,6 +7,11 @@ using UnityEngine;
 
 public class FirebaseRemoteConfigManager : MonoBehaviour
 {
+    void Awake()
+{
+    PlayerPrefs.DeleteKey("PlayerChoseGameMode"); 
+    
+}
     void Start()
     {
         Debug.Log("Bắt đầu khởi tạo Firebase...");
