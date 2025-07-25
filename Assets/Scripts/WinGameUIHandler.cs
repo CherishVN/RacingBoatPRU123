@@ -5,8 +5,13 @@ public class WinGameUIHandler : MonoBehaviour
 {
     public void RestartLevel()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (GameManager.Instance != null)
+    {
+        PlayerPrefs.SetInt("GameMode", GameManager.Instance.currentMode == GameManager.GameMode.VsAI ? 1 : 0);
+    }
+
+    Time.timeScale = 1f;
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu()

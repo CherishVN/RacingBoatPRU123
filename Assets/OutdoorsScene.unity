@@ -4974,6 +4974,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4917993146247128472, guid: e3817462290a1744191b575ab6095c01, type: 3}
   m_PrefabInstance: {fileID: 773342910}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &306761746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306761748}
+  - component: {fileID: 306761747}
+  m_Layer: 0
+  m_Name: EnergyOrbSpawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &306761747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306761746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58b6f3bc8a5b5449a2e03eebe07bf6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyOrbPrefab: {fileID: 5831759942156156335, guid: 3f086aa4976b1d94c9db7b58765ce546, type: 3}
+  energyOrbMaterial: {fileID: 2100000, guid: 13c5b02204a4f4144baf530e9dc95f8c, type: 2}
+  spawnInterval: 5
+  maxOrbsActive: 10
+  spawnAreaSize: {x: 15, y: 25}
+  waterLevel: 0
+--- !u!4 &306761748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306761746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -174.5, y: 15.35, z: 311.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &315592157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16469,7 +16519,7 @@ MonoBehaviour:
   energyOrbMaterial: {fileID: 2100000, guid: 13c5b02204a4f4144baf530e9dc95f8c, type: 2}
   spawnInterval: 5
   maxOrbsActive: 10
-  spawnAreaSize: {x: 10, y: 40}
+  spawnAreaSize: {x: 15, y: 25}
   waterLevel: 0
 --- !u!4 &987429715
 Transform:
@@ -16480,7 +16530,7 @@ Transform:
   m_GameObject: {fileID: 987429713}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -62.09, y: 15.35, z: 249}
+  m_LocalPosition: {x: -62.09, y: 15.35, z: 243.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17156,6 +17206,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1876e96a48eea50458d7e14f141123ed, type: 3}
+--- !u!1 &1026354224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1026354226}
+  - component: {fileID: 1026354225}
+  m_Layer: 0
+  m_Name: EnergyOrbSpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1026354225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026354224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58b6f3bc8a5b5449a2e03eebe07bf6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyOrbPrefab: {fileID: 5831759942156156335, guid: 3f086aa4976b1d94c9db7b58765ce546, type: 3}
+  energyOrbMaterial: {fileID: 2100000, guid: 13c5b02204a4f4144baf530e9dc95f8c, type: 2}
+  spawnInterval: 5
+  maxOrbsActive: 10
+  spawnAreaSize: {x: 15, y: 25}
+  waterLevel: 0
+--- !u!4 &1026354226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026354224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -72.7, y: 15.35, z: 312.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1039382191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20894,6 +20994,56 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8fb688e99fc28743b38328efa46316d, type: 3}
+--- !u!1 &1285564255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285564257}
+  - component: {fileID: 1285564256}
+  m_Layer: 0
+  m_Name: EnergyOrbSpawner (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1285564256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285564255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58b6f3bc8a5b5449a2e03eebe07bf6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyOrbPrefab: {fileID: 5831759942156156335, guid: 3f086aa4976b1d94c9db7b58765ce546, type: 3}
+  energyOrbMaterial: {fileID: 2100000, guid: 13c5b02204a4f4144baf530e9dc95f8c, type: 2}
+  spawnInterval: 5
+  maxOrbsActive: 10
+  spawnAreaSize: {x: 15, y: 25}
+  waterLevel: 0
+--- !u!4 &1285564257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285564255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -195.3, y: 15.35, z: 203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1287760497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35155,6 +35305,9 @@ SceneRoots:
   - {fileID: 949663868}
   - {fileID: 4001625778437719738}
   - {fileID: 987429715}
+  - {fileID: 1026354226}
+  - {fileID: 306761748}
+  - {fileID: 1285564257}
   - {fileID: 519626207}
   - {fileID: 1404081569}
   - {fileID: 1071054413}
