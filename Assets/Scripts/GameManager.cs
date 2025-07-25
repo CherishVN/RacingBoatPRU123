@@ -84,22 +84,26 @@ public TextMeshProUGUI player2ResultText;
 
     int loserPlayerID = (winnerPlayerID == 1) ? 2 : 1;
 
+    int p1Score = ScoreManager.Instance.GetScore(1);
+    int p2Score = ScoreManager.Instance.GetScore(2);
+
     // Player 1 thắng
     if (winnerPlayerID == 1)
     {
         player1ResultPanel.SetActive(true);
-        player1ResultText.text = "🎉 YOU WIN!";
+        player1ResultText.text = $"YOU WIN!\nScore: {p1Score}";
         player2ResultPanel.SetActive(true);
-        player2ResultText.text = "😞 YOU LOSE!";
+        player2ResultText.text = $"YOU LOSE!\nScore: {p2Score}";
     }
     else
     {
         player2ResultPanel.SetActive(true);
-        player2ResultText.text = "🎉 YOU WIN!";
+        player2ResultText.text = $"YOU WIN!\nScore: {p2Score}";  
         player1ResultPanel.SetActive(true);
-        player1ResultText.text = "😞 YOU LOSE!";
+        player1ResultText.text = $"YOU LOSE!\nScore: {p1Score}";
     }
 
+    winPanel.SetActive(true);
     Time.timeScale = 0f;
 }
 
