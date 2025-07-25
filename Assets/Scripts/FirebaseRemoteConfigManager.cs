@@ -77,34 +77,36 @@ public class FirebaseRemoteConfigManager : MonoBehaviour
     }
 
     void ApplyRemoteConfig()
-{
-    try
     {
-        string gameMode = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode").StringValue;
-
-        Debug.Log("Game Mode từ Remote Config: " + gameMode);
-
-        if (gameMode == "vs_ai")
+        try
         {
-            Debug.Log("Đang chuyển sang chế độ chơi với AI");
+            // Lấy giá trị game_mode từ Remote Config
+            ConfigValue gameModeValue = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode");
+            
+            string gameMode = gameModeValue.StringValue;
+           
 
-            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsAI);
+            // Sử dụng gameMode để điều chỉnh chế độ chơi
+            if (gameMode == "vs_ai")
+            {
+                // Thiết lập chế độ chơi với AI
+                Debug.Log("Đang chuyển sang chế độ chơi với AI");
+            }
+            else if (gameMode == "vs_human")
+            {
+                // Thiết lập chế độ chơi với người
+                Debug.Log("Đang chuyển sang chế độ chơi với người");
+            }
+            else
+            {
+                // Sử dụng giá trị mặc định nếu không nhận diện được chế độ
+                Debug.Log("Sử dụng chế độ mặc định - vs_ai");
+            }
+            Debug.Log("Game Mode từ Remote Config: " + gameMode);
         }
-        else if (gameMode == "vs_human")
+        catch (Exception ex)
         {
-            Debug.Log("Đang chuyển sang chế độ chơi với người");
-
-            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsHuman);
-        }
-        else
-        {
-            Debug.Log("Giá trị không xác định, fallback về vs_human");
-            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsHuman);
+            Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
         }
     }
-    catch (Exception ex)
-    {
-        Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
-    }
-}
 }
