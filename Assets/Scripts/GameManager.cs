@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI  winText;
     public bool raceEnded { get; private set; } = false;
     public TextMeshProUGUI loseText;
+    public GameObject player1ResultPanel;
+public GameObject player2ResultPanel;
+public TextMeshProUGUI player1ResultText;
+public TextMeshProUGUI player2ResultText;
+
     void Awake()
     {
         if (Instance == null)
@@ -69,23 +74,32 @@ public class GameManager : MonoBehaviour
         }
     }
     public void DeclareWinner(int winnerPlayerID)
-    {
+{
     if (raceEnded) return;
 
     raceEnded = true;
 
-    if (winPanel != null && winText != null)
+    player1ResultPanel.SetActive(false);
+    player2ResultPanel.SetActive(false);
+
+    int loserPlayerID = (winnerPlayerID == 1) ? 2 : 1;
+
+    // Player 1 thắng
+    if (winnerPlayerID == 1)
     {
-        winPanel.SetActive(true);
-
-        winText.text = "🎉 Player " + winnerPlayerID + " Wins!";
-
-        int loserPlayerID = (winnerPlayerID == 1) ? 2 : 1;
-
-        if (loseText != null)
-            loseText.text = "😞 Player " + loserPlayerID + " Loses!";
+        player1ResultPanel.SetActive(true);
+        player1ResultText.text = "🎉 YOU WIN!";
+        player2ResultPanel.SetActive(true);
+        player2ResultText.text = "😞 YOU LOSE!";
+    }
+    else
+    {
+        player2ResultPanel.SetActive(true);
+        player2ResultText.text = "🎉 YOU WIN!";
+        player1ResultPanel.SetActive(true);
+        player1ResultText.text = "😞 YOU LOSE!";
     }
 
     Time.timeScale = 0f;
-    }
+}
 }
