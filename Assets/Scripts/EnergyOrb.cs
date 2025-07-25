@@ -8,6 +8,8 @@ public class EnergyOrb : MonoBehaviour
     
     [Header("Rotation Settings")]
     public float rotationSpeed = 90f;
+
+    public int scoreValue = 10;
     
     private Vector3 startPosition;
     private float timeOffset;
@@ -31,9 +33,15 @@ public class EnergyOrb : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         BoatEnergySystem energySystem = other.GetComponent<BoatEnergySystem>();
+        BoatIdentity identity = other.GetComponent<BoatIdentity>();
         if (energySystem != null)
         {
             energySystem.CollectEnergyOrb();
+            // Cộng điểm nếu có danh tính thuyền
+            if (identity != null && ScoreManager.Instance != null)
+            {
+                ScoreManager.Instance.AddScore(identity.playerID, scoreValue);
+            }
             // Có thể thêm hiệu ứng particle hoặc âm thanh ở đây trước khi destroy
             Destroy(gameObject);
         }

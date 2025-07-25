@@ -86,12 +86,12 @@ public class BoatAIController : MonoBehaviour
         // Điều hướng AI: thêm vùng đi thẳng ổn định ±5 độ
         float absAngle = Mathf.Abs(angle);
 
-        if (absAngle < 5f)
+        if (absAngle < 8f)
         {
             // Góc nhỏ: đi thẳng
             boatMovement.SimulateInput(true, false, false, false);
         }
-        else if (absAngle > steerThreshold)
+        else if (absAngle >= 8f && absAngle < 15f)
         {
             // Góc lớn: rẽ mạnh
             if (angle > 0)
@@ -101,8 +101,11 @@ public class BoatAIController : MonoBehaviour
         }
         else
         {
-            // Góc vừa phải: đi thẳng để tránh lắc (bạn có thể mở rộng để rẽ nhẹ nếu muốn)
-            boatMovement.SimulateInput(true, false, false, false);
+            // quay mạnh
+    if (angle > 0)
+        boatMovement.SimulateInput(true, false, false, true);
+    else
+        boatMovement.SimulateInput(true, false, true, false);
         }
     }
 
