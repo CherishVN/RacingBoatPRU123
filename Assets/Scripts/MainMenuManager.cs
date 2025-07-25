@@ -12,6 +12,12 @@ public class MainMenuManager : MonoBehaviour
     [Header("UI Elements")]
     public Slider volumeSlider;
     public TextMeshProUGUI volumeValueText;
+    public Slider sfxVolumeSlider;
+    public TextMeshProUGUI sfxVolumeValueText;
+
+    [Header("SFX")]
+    public AudioSource sfxSource;
+    public AudioClip clickSound;
 
     void Start()
     {
@@ -19,11 +25,50 @@ public class MainMenuManager : MonoBehaviour
         {
             float savedVolume = PlayerPrefs.GetFloat("MasterVolume");
             SetVolume(savedVolume);
+
+            if (volumeSlider != null)
+            {
+                volumeSlider.value = savedVolume;
+            }
         }
         else
         {
-            SetVolume(1f);
+            float defaultVolume = 0.75f;
+            SetVolume(defaultVolume);
+
+            if (volumeSlider != null)
+            {
+                volumeSlider.value = defaultVolume;
+            }
         }
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume");
+            SetSFXVolume(savedSFXVolume);
+            sfxVolumeSlider.value = savedSFXVolume;
+        }
+        else
+        {
+            float defaultSFXVolume = 1f;
+            SetSFXVolume(defaultSFXVolume);
+            sfxVolumeSlider.value = defaultSFXVolume;
+        }
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.volume = volume;
+        }
+
+        if (sfxVolumeValueText != null)
+        {
+            sfxVolumeValueText.text = Mathf.RoundToInt(volume * 100) + "%";
+        }
+
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     public void SetVolume(float volume)
@@ -78,5 +123,12 @@ public class MainMenuManager : MonoBehaviour
     {
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+    }
+    public void PlayClickSound()
+    {
+        if (sfxSource != null && clickSound != null)
+        {
+            sfxSource.PlayOneShot(clickSound);
+        }
     }
 }

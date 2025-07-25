@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnergyOrb
   - Checkpoint
+  - Water
   layers:
   - Default
   - TransparentFX
