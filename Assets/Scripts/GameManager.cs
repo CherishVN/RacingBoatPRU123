@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
             player1ResultText.text = "😞 YOU LOSE!";
         }
 
-        Time.timeScale = 0f;
-    }
+    Time.timeScale = 0f;
+}
+
 }
