@@ -81,4 +81,6 @@ public class MainMenuManager : MonoBehaviour
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
     }
+    
+
 }
