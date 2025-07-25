@@ -59,12 +59,14 @@ public class MainMenuManager : MonoBehaviour
     public void Start1v1Mode()
     {
          PlayerPrefs.SetInt("GameMode", 0);
+         PlayerPrefs.SetInt("PlayerChoseGameMode", 1);
         SceneManager.LoadScene("OutdoorsScene");
     }
 
     public void StartAIMode()
     {
         PlayerPrefs.SetInt("GameMode", 1);
+        PlayerPrefs.SetInt("PlayerChoseGameMode", 1);
         SceneManager.LoadScene("OutdoorsScene");
     }
 
