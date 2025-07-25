@@ -77,34 +77,42 @@ public class FirebaseRemoteConfigManager : MonoBehaviour
     }
 
     void ApplyRemoteConfig()
-{
-    try
     {
-        string gameMode = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode").StringValue;
+        try
+    {
+        // Nếu người chơi đã chọn chế độ thủ công từ menu, không ghi đè
+        if (PlayerPrefs.GetInt("PlayerChoseGameMode", 0) == 1)
+        {
+            Debug.Log("Người chơi đã chọn chế độ chơi thủ công. Bỏ qua Remote Config.");
+            return;
+        }
+
+        ConfigValue gameModeValue = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode");
+        string gameMode = gameModeValue.StringValue;
 
         Debug.Log("Game Mode từ Remote Config: " + gameMode);
 
         if (gameMode == "vs_ai")
         {
-            Debug.Log("Đang chuyển sang chế độ chơi với AI");
-
-            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsAI);
+            PlayerPrefs.SetInt("GameMode", 1);
+            Debug.Log("Đã thiết lập chế độ chơi với AI từ Remote Config");
         }
         else if (gameMode == "vs_human")
         {
-            Debug.Log("Đang chuyển sang chế độ chơi với người");
-
-            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsHuman);
+            PlayerPrefs.SetInt("GameMode", 0);
+            Debug.Log("Đã thiết lập chế độ chơi với người từ Remote Config");
         }
         else
         {
-            Debug.Log("Giá trị không xác định, fallback về vs_human");
-            GameManager.Instance?.SetGameMode(GameManager.GameMode.VsHuman);
+            Debug.LogWarning("Giá trị game_mode không hợp lệ từ Remote Config. Dùng mặc định vs_ai");
+            PlayerPrefs.SetInt("GameMode", 1);
         }
+
+        PlayerPrefs.Save();
     }
     catch (Exception ex)
     {
         Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
     }
-}
+    }
 }
