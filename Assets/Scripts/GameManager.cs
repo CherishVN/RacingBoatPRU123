@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class GameManager : MonoBehaviour
     public Transform player2Boat;
     private BoatAIController aiController;
     private BoatMovementArrows player2Movement;
-
+    public GameObject winPanel;
+    public TextMeshProUGUI  winText;
+    public bool raceEnded { get; private set; } = false;
+    public TextMeshProUGUI loseText;
     void Awake()
     {
         if (Instance == null)
@@ -63,5 +67,25 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
+    }
+    public void DeclareWinner(int winnerPlayerID)
+    {
+    if (raceEnded) return;
+
+    raceEnded = true;
+
+    if (winPanel != null && winText != null)
+    {
+        winPanel.SetActive(true);
+
+        winText.text = "🎉 Player " + winnerPlayerID + " Wins!";
+
+        int loserPlayerID = (winnerPlayerID == 1) ? 2 : 1;
+
+        if (loseText != null)
+            loseText.text = "😞 Player " + loserPlayerID + " Loses!";
+    }
+
+    Time.timeScale = 0f;
     }
 }
