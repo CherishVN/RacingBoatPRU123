@@ -7,11 +7,6 @@ using UnityEngine;
 
 public class FirebaseRemoteConfigManager : MonoBehaviour
 {
-    void Awake()
-{
-    PlayerPrefs.DeleteKey("PlayerChoseGameMode"); 
-    
-}
     void Start()
     {
         Debug.Log("Bắt đầu khởi tạo Firebase...");
@@ -84,40 +79,34 @@ public class FirebaseRemoteConfigManager : MonoBehaviour
     void ApplyRemoteConfig()
     {
         try
-    {
-        // Nếu người chơi đã chọn chế độ thủ công từ menu, không ghi đè
-        if (PlayerPrefs.GetInt("PlayerChoseGameMode", 0) == 1)
         {
-            Debug.Log("Người chơi đã chọn chế độ chơi thủ công. Bỏ qua Remote Config.");
-            return;
+            // Lấy giá trị game_mode từ Remote Config
+            ConfigValue gameModeValue = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode");
+            
+            string gameMode = gameModeValue.StringValue;
+           
+
+            // Sử dụng gameMode để điều chỉnh chế độ chơi
+            if (gameMode == "vs_ai")
+            {
+                // Thiết lập chế độ chơi với AI
+                Debug.Log("Đang chuyển sang chế độ chơi với AI");
+            }
+            else if (gameMode == "vs_human")
+            {
+                // Thiết lập chế độ chơi với người
+                Debug.Log("Đang chuyển sang chế độ chơi với người");
+            }
+            else
+            {
+                // Sử dụng giá trị mặc định nếu không nhận diện được chế độ
+                Debug.Log("Sử dụng chế độ mặc định - vs_ai");
+            }
+            Debug.Log("Game Mode từ Remote Config: " + gameMode);
         }
-
-        ConfigValue gameModeValue = FirebaseRemoteConfig.DefaultInstance.GetValue("game_mode");
-        string gameMode = gameModeValue.StringValue;
-
-        Debug.Log("Game Mode từ Remote Config: " + gameMode);
-
-        if (gameMode == "vs_ai")
+        catch (Exception ex)
         {
-            PlayerPrefs.SetInt("GameMode", 1);
-            Debug.Log("Đã thiết lập chế độ chơi với AI từ Remote Config");
+            Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
         }
-        else if (gameMode == "vs_human")
-        {
-            PlayerPrefs.SetInt("GameMode", 0);
-            Debug.Log("Đã thiết lập chế độ chơi với người từ Remote Config");
-        }
-        else
-        {
-            Debug.LogWarning("Giá trị game_mode không hợp lệ từ Remote Config. Dùng mặc định vs_ai");
-            PlayerPrefs.SetInt("GameMode", 1);
-        }
-
-        PlayerPrefs.Save();
-    }
-    catch (Exception ex)
-    {
-        Debug.LogError("Lỗi khi áp dụng Remote Config: " + ex.Message);
-    }
     }
 }

@@ -67,7 +67,7 @@ public class BoatAIController : MonoBehaviour
                     Debug.Log("AI: Đã hoàn thành " + totalLaps + " vòng!");
                     if (!GameManager.Instance.raceEnded)
                         {
-                            GameManager.Instance.DeclareWinner(2);  // AI playerID = 2
+                            GameManager.Instance.DeclareWinner(2); 
                         }
                     isAIEnabled = false;
                     boatMovement.SimulateInput(false, false, false, false);

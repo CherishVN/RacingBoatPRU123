@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
     private BoatAIController aiController;
     private BoatMovementArrows player2Movement;
     public GameObject winPanel;
-    public TextMeshProUGUI  winText;
+    public TextMeshProUGUI winText;
     public bool raceEnded { get; private set; } = false;
     public TextMeshProUGUI loseText;
     public GameObject player1ResultPanel;
-public GameObject player2ResultPanel;
-public TextMeshProUGUI player1ResultText;
-public TextMeshProUGUI player2ResultText;
+    public GameObject player2ResultPanel;
+    public TextMeshProUGUI player1ResultText;
+    public TextMeshProUGUI player2ResultText;
 
     void Awake()
     {
@@ -46,8 +46,8 @@ public TextMeshProUGUI player2ResultText;
             player2Movement = player2Boat.GetComponent<BoatMovementArrows>();
         }
         // Đọc game mode từ PlayerPrefs (mặc định VsHuman)
-    int savedMode = PlayerPrefs.GetInt("GameMode", 0);
-    GameMode modeToSet = (savedMode == 1) ? GameMode.VsAI : GameMode.VsHuman;
+        int savedMode = PlayerPrefs.GetInt("GameMode", 0);
+        GameMode modeToSet = (savedMode == 1) ? GameMode.VsAI : GameMode.VsHuman;
 
         SetGameMode(modeToSet);
     }
@@ -67,39 +67,39 @@ public TextMeshProUGUI player2ResultText;
 
                 case GameMode.VsAI:
                     aiController.EnableAI(true);
-                     player2Movement.isAIControlled = true;
+                    player2Movement.isAIControlled = true;
                     player2Movement.enabled = true;
                     break;
             }
         }
     }
     public void DeclareWinner(int winnerPlayerID)
-{
-    if (raceEnded) return;
-
-    raceEnded = true;
-
-    player1ResultPanel.SetActive(false);
-    player2ResultPanel.SetActive(false);
-
-    int loserPlayerID = (winnerPlayerID == 1) ? 2 : 1;
-
-    // Player 1 thắng
-    if (winnerPlayerID == 1)
     {
-        player1ResultPanel.SetActive(true);
-        player1ResultText.text = "🎉 YOU WIN!";
-        player2ResultPanel.SetActive(true);
-        player2ResultText.text = "😞 YOU LOSE!";
-    }
-    else
-    {
-        player2ResultPanel.SetActive(true);
-        player2ResultText.text = "🎉 YOU WIN!";
-        player1ResultPanel.SetActive(true);
-        player1ResultText.text = "😞 YOU LOSE!";
-    }
+        if (raceEnded) return;
 
-    Time.timeScale = 0f;
-}
+        raceEnded = true;
+
+        player1ResultPanel.SetActive(false);
+        player2ResultPanel.SetActive(false);
+
+        int loserPlayerID = (winnerPlayerID == 1) ? 2 : 1;
+
+        // Player 1 thắng
+        if (winnerPlayerID == 1)
+        {
+            player1ResultPanel.SetActive(true);
+            player1ResultText.text = "🎉 YOU WIN!";
+            player2ResultPanel.SetActive(true);
+            player2ResultText.text = "😞 YOU LOSE!";
+        }
+        else
+        {
+            player2ResultPanel.SetActive(true);
+            player2ResultText.text = "🎉 YOU WIN!";
+            player1ResultPanel.SetActive(true);
+            player1ResultText.text = "😞 YOU LOSE!";
+        }
+
+        Time.timeScale = 0f;
+    }
 }
