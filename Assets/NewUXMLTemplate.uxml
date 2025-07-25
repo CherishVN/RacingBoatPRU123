@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="MainMenuContainer" style="flex-grow: 1; align-items: center; justify-content: center;">
+        <ui:Label text="RACE THE WAVES" name="Title" style="font-size: 60px;" />
+        <ui:Button text="Play" name="PlayButton" />
+    </ui:VisualElement>
+</ui:UXML>
