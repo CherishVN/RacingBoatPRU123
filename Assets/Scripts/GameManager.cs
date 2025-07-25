@@ -36,8 +36,11 @@ public class GameManager : MonoBehaviour
             aiController = player2Boat.GetComponent<BoatAIController>();
             player2Movement = player2Boat.GetComponent<BoatMovementArrows>();
         }
+        // Đọc game mode từ PlayerPrefs (mặc định VsHuman)
+    int savedMode = PlayerPrefs.GetInt("GameMode", 0);
+    GameMode modeToSet = (savedMode == 1) ? GameMode.VsAI : GameMode.VsHuman;
 
-        SetGameMode(currentMode);
+        SetGameMode(modeToSet);
     }
 
     public void SetGameMode(GameMode mode)

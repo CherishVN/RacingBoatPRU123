@@ -13,9 +13,6 @@ public class MainMenuManager : MonoBehaviour
     public Slider volumeSlider;
     public TextMeshProUGUI volumeValueText;
 
-    [Header("Scene Names")]
-    public string scene_1v1 = "GameScene_1v1";
-    public string scene_AI = "GameScene_AI";
     void Start()
     {
         if (PlayerPrefs.HasKey("MasterVolume"))
@@ -61,12 +58,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void Start1v1Mode()
     {
-        SceneManager.LoadScene(scene_1v1);
+         PlayerPrefs.SetInt("GameMode", 0);
+        SceneManager.LoadScene("OutdoorsScene");
     }
 
     public void StartAIMode()
     {
-        SceneManager.LoadScene(scene_AI);
+        PlayerPrefs.SetInt("GameMode", 1);
+        SceneManager.LoadScene("OutdoorsScene");
     }
 
     public void CloseGameModePanel()
