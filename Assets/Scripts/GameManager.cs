@@ -102,4 +102,5 @@ public TextMeshProUGUI player2ResultText;
 
     Time.timeScale = 0f;
 }
+
 }
